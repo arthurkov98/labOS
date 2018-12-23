@@ -17,7 +17,7 @@
 int main (void)
 {
 	key_t key;
-	int shmid, id = 1523, bufLen; 
+	int shmid, id = 1576, bufLen; 
 	char *shm, buffer[BUFFER_SIZE];
 	time_t t;
 
