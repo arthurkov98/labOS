@@ -28,11 +28,9 @@ void* consume(void *arg)
         while (counter < BUFFER_SIZE) {
             pthread_cond_wait(&cond, &mutex);
         }
-        while (counter) {
-            shm[counter] = ' ';
-            counter--;
-            printf("reduce buffer %s\n", shm);
-        }
+        for (;counter;shm[--counter] = ' ') 
+        	printf("reduce buffer %s\n", shm);
+        printf("reduce buffer %s\n", shm);
         pthread_mutex_unlock(&mutex);
     }
 	pthread_exit(0);
