@@ -8,7 +8,6 @@
 #include <unistd.h>
 #include <time.h>
 
-#define PTHREAD_NUM 10
 #define BUFFER_SIZE 128
 
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
