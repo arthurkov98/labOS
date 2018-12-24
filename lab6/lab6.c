@@ -48,7 +48,7 @@ void* produce(void *arg)
             pthread_cond_signal(&cond);
         }
         pthread_mutex_unlock(&mutex);
-        usleep(500000);
+        usleep(50000);
     }
 	pthread_exit(0);   
 }
