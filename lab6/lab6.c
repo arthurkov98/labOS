@@ -17,7 +17,7 @@
 #define MEM_SIZE    16
 
 pthread_mutex_t mutex;
-pthread_cond_t cond = PTHREAD_COND_INITIALIZER;
+pthread_cond_t cond;
 int counter;
 char* shm;
 
@@ -45,10 +45,10 @@ void* produce(void *arg)
         printf("%d: %s\n", counter, shm);
         if (counter > BUFFER_SIZE-1) {
             printf("Buffer is full\n");
-            pthread_cond_signal(&cond);
+            pthread_cond_broadcast(&cond);
         }
         pthread_mutex_unlock(&mutex);
-        usleep(50000);
+        usleep(500);
     }
 	pthread_exit(0);   
 }
@@ -58,7 +58,7 @@ int main(void)
 	pthread_t consumer;
 	pthread_t producer;
 	key_t key;
-	int shmid, id = 1576; 
+	int shmid, id = 2345; 
 
 	unlink("./file2");
 	key = ftok("./file2", id);
@@ -79,6 +79,9 @@ int main(void)
 		perror("connect error");
 
 	shm[BUFFER_SIZE+1] = '\0';
+
+	pthread_mutex_init(&mutex,NULL);
+	pthread_cond_init(&cond,NULL);
 
 	if (pthread_create(&producer, NULL, produce, NULL) < 0)
 		perror("Can't create writer thread\n");
