@@ -17,7 +17,7 @@ int main(int argc, char* argv[]){
 	struct tm timer;
 	char* mon;
 
-	if(argc < 2) path = get_current_dir_name ();
+	if(argc < 2) path = ".";
 	else path = argv[1];
 
 	dir = opendir(path);
