@@ -46,6 +46,8 @@ int main (void)
 	if ((shm = shmat(shmid, NULL, 0)) == (char*)-1)
 		perror("connect error");
 
+	semop(semid,&unlock,1);	
+	
 	while(1)
 	{
 		semop(semid,&lock,1);
