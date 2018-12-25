@@ -13,7 +13,7 @@
 #include <sys/ipc.h>
 #include <sys/sem.h>
 
-#define BUFFER_SIZE 100
+#define BUFFER_SIZE 50
 #define MEM_SIZE    50
 
 int main (void)
